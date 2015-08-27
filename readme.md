@@ -11,8 +11,11 @@ Requires jQuery.
 ## Secondary container classes
 
 - shrink
+- observe
 
 Use inside vsplit/hsplit to shrink and not be part of the equal split.
+
+Observe is used when a shrunk container should adjust its size if the content changes.
 
 ## Behavioural container classes
 

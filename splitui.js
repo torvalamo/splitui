@@ -4,7 +4,7 @@
 	function rescale() {
 		if (inrescale) return
 		inrescale = true
-		$('.scroll').attr('style', '')
+		$('.scrol, .scrollmax').attr('style', '')
 		$('.hsplit, .vsplit').data('shrink', 0)
 		$('.hsplit > .shrink').each(function() {
 			var p = $(this).parent()
@@ -28,15 +28,16 @@
 		$('.vsplit > :not(.shrink, .slidein, .slideleft, .slideoutleft, .slideright, .slideoutright)').each(function() {
 			var p = $(this).parent()
 			var n = p.children(':not(.shrink, .slidein, .slideleft, .slideoutleft, .slideright, .slideoutright)').length
-			var c = p.children('.scroll').length * 20
-			//alert(p.data('shrink') + '/' + n)
+			var c = p.children('.scroll, .scrollmax').length * 20
 			var s = 'calc(' + (100 / n) + '% - ' + ((p.data('shrink') + c) / n) + 'px)'
 			$(this).css('width', p.data('shrink') ? s : (100 / n) + '%')
 		})
 		$('.scrollmax.shrink:not(.slidein), .scroll.shrink:not(.slidein)').each(function() {
 			$(this).css('width', (Math.ceil(parseFloat($(this).css('width'))) + 20) + 'px')
 		})
-		$('.scrollmax').scrollTop(10000000)
+		$('.scrollmax').each(function() {
+			$(this).scrollTop(this.scrollHeight)
+		})
 		inrescale = false
 	}
 
@@ -52,10 +53,18 @@
 			})
 		})
 		var scr = new MutationObserver(function(rec) {
-			$(rec.target).scrollTop(10000000)
+			alert('here')
+			if ($(rec).hasClass('.scrollmax')) {
+				var p = $(rec)
+			} else {
+				var c = $(rec).children().first()
+				var p = c.parentsUntil('.scrollmax').last()
+			}
+			p.scrollTop(p.get().scrollHeight)
 		})
 		$('.scrollmax').each(function() {
 			scr.observe(this, {
+				attributes: true,
 				childList: true,
 				characterData: true,
 				subtree: true
@@ -96,4 +105,4 @@
 		} 
 		$(id).animate(a, 1000)
 	}
-}())
+})()
