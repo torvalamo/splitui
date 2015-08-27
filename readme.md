@@ -1,14 +1,18 @@
 # SplitUI
 
-Main container classes
+Requires jQuery.
+
+## Main container classes
 
 - pane
 - vsplit
 - hsplit
 
-Secondary container classes
+## Secondary container classes
 
 - shrink
+
+Use inside vsplit/hsplit to shrink and not be part of the equal split.
 
 ## Behavioural container classes
 
