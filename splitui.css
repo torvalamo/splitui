@@ -1,0 +1,80 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	position:relative;
+}
+
+.pane, .hsplit > * {
+	width: 100%;
+}
+
+.pane, .vsplit > * {
+	height: 100%;
+}
+
+.hsplit > * {
+	height: auto;
+	float:left;
+}
+
+.vsplit > * {
+	width: auto;
+	float:left;
+}
+
+/*
+.pane {
+	background-color:deeppink;
+}
+
+.fixed {
+	background-color:darkgoldenrod;
+}
+
+.hshrink {
+	background-color:forestgreen;
+}*/
+
+/* hsplits that shrink as part of a vsplit should not have floating
+   children, otherwise an incorrect width is calculated */
+.vsplit > .hsplit.shrink > * {
+	float: none;
+}
+
+.slidein, .slideup, .slidedown, .slideleft, .slideright, .slideoutup, .slideoutdown, .slideoutleft, .slideoutright {
+	overflow: hidden;
+}
+
+.scroll, .scrollmax {
+	overflow:auto;
+}
+
+.vsplit > .slidein, .slideleft, .slideright, .slideoutleft, .slideoutright {
+	width:0;
+}
+
+.hsplit > .slidein, .slideup, .slidedown, .slideoutup, .slideoutdown {
+	height:0;
+}
+
+.slideleft, .slideoutleft, .slideright, .slideoutright, .slideup, .slideoutup, .slidedown, .slideoutdown {
+	position: absolute;
+	z-index: 998;
+}
+
+.slideleft, .slideoutleft {
+	right: 0;
+}
+
+.slideright, .slideoutright {
+	left: 0;
+}
+
+.slideup, .slideoutup {
+	bottom: 0;
+}
+
+.slidedown, .slideoutdown {
+	top: 0;
+}
