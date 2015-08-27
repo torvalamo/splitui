@@ -4,7 +4,6 @@
 	function rescale() {
 		if (inrescale) return
 		inrescale = true
-		var heights = []
 		$('.scroll').attr('style', '')
 		$('.hsplit, .vsplit').data('shrink', 0)
 		$('.hsplit > .shrink').each(function() {
@@ -12,16 +11,12 @@
 			var h = Math.ceil(parseFloat($(this).css('height')))
 			$(this).css('height', h)
 			p.data('shrink', p.data('shrink') + h)
-			//$(this).css('background-color', 'red')
-			//alert(p.data('shrink'))
 		})
 		$('.hsplit > :not(.shrink, .slidein, .slideup, .slideoutup, .slidedown, .slideoutdown)').each(function() {
 			var p = $(this).parent()
 			var n = p.children(':not(.shrink, .slidein, .slideup, .slideoutup, .slidedown, .slideoutdown)').length
 			var s = 'calc(' + (100 / n) + '% - ' + (p.data('shrink') / n) + 'px)'
 			$(this).css('height', p.data('shrink') ? s : (100 / n) + '%')
-			//$(this).css('background-color', 'green')
-			//alert(p.data('shrink'))
 		})
 		$('.vsplit > .shrink:not(.slidein)').each(function() {
 			var p = $(this).parent()
@@ -29,8 +24,6 @@
 			var w = Math.ceil(parseFloat($(this).css('width'))) + 1
 			$(this).css('width', w)
 			p.data('shrink', p.data('shrink') + w)
-			//$(this).css('background-color', 'yellow')
-			//alert(p.data('shrink'))
 		})
 		$('.vsplit > :not(.shrink, .slidein, .slideleft, .slideoutleft, .slideright, .slideoutright)').each(function() {
 			var p = $(this).parent()
@@ -39,8 +32,6 @@
 			//alert(p.data('shrink') + '/' + n)
 			var s = 'calc(' + (100 / n) + '% - ' + ((p.data('shrink') + c) / n) + 'px)'
 			$(this).css('width', p.data('shrink') ? s : (100 / n) + '%')
-			//$(this).css('background-color', 'blue')
-			//alert(p.data('shrink'))
 		})
 		$('.scrollmax.shrink:not(.slidein), .scroll.shrink:not(.slidein)').each(function() {
 			$(this).css('width', (Math.ceil(parseFloat($(this).css('width'))) + 20) + 'px')
